@@ -33,12 +33,40 @@
 // fn test(s: &String) -> usize {
 //     s.len()
 // }
+
 //   不能尝试修改 借用的变量 引用就是借用
 
+// fn main() {
+//     let s = String::from("hello");
+
+//     change(&s);
+// }
+
+// fn change(some_string: &String) {
+//     some_string.push_str(", world");
+// }
+
+// 变量 跟 借用一样 都是不可变的
+
+// 可变引用
+
 fn main() {
-    let s1 = String::from("hello");
-    test(&s1);
+    let mut s = String::from("ooo");
+    set_borrow(&mut s);
+    println!("{}", s)
 }
-fn test(s: &String) {
-    s.push_str("", "world");
+
+fn set_borrow(self_a: &mut String) {
+    self_a.push_str("world");
 }
+
+// fn main() {
+//     let mut s = String::from("hello");
+
+//     change(&mut s);
+//     println!("{}", s)
+// }
+
+// fn change(some_string: &mut String) {
+//     some_string.push_str(", world");
+// }
