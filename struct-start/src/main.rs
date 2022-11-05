@@ -97,8 +97,7 @@
 // fn main() {
 //     let black = Color(0, 0, 0);
 //     let origin = Point(0, 0, 0);
-//     let (x, y, z) = origin;
-//     println!("{} {} {}", x, y, z);
+//     println!("{} {} {}", origin.0, origin.1, origin.2);
 // }
 
 // 没有任何字段的类单元结构体
@@ -111,14 +110,50 @@
 
 // 结构体程序实例
 
+// fn main() {
+//     let width = 30;
+//     let height = 50;
+//     println!(
+//         "The area of the rectangle is {} square pixels.",
+//         area(width, height)
+//     );
+// }
+// fn area(width: usize, height: usize) -> usize {
+//     width * height
+// }
+
+// 程序没有把这两个参数之间的关联体现出来
+// 使用元组重构
+// fn main() {
+//     let rect = (30, 50);
+//     println!("The area of the rectangle is {} square pixels.", area(rect))
+// }
+
+// fn area(dimensions: (u32, u32)) -> u32 {
+//     dimensions.0 * dimensions.1
+// }
+
+// 元组帮助我们增加了一些结构性 这样我们只需要传递一个参数
+// 但是函数中的结构 却让人费解了 你不知道 这个 0 1 到底指的是什么
+
+// 使用结构体重构 赋予更多的意义
+
+struct Rectangle {
+    width: u32,
+    height: u32,
+}
+
 fn main() {
-    let width = 30;
-    let height = 50;
+    let react = Rectangle {
+        width: 30,
+        height: 60,
+    };
     println!(
         "The area of the rectangle is {} square pixels.",
-        area(width, height)
+        area(&react)
     );
+    println!("{}", react.height);
 }
-fn area(width: usize, height: usize) -> usize {
-    width * height
+fn area(rectangle: &Rectangle) -> u32 {
+    rectangle.width * rectangle.height
 }
