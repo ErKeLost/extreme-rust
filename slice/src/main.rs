@@ -58,15 +58,48 @@
 //     println!("{}", slice);
 // }
 
+// fn main() {
+//     let s = String::from("hello");
+
+//     let len = s.len();
+//     let a: usize = 1;
+
+//     // let slice = &s[a..len];
+//     // 也可以 不写index 如果要获取全部
+//     let slice = &s[..];
+//     println!("{}", slice);
+// }
+
+// fn main() {
+//     let mut s = String::from("hello world");
+
+//     let word = first_word(&s);
+
+//     s.clear(); // error!
+
+//     println!("the first word is: {}", word);
+// }
+// fn first_word(s: &String) -> &str {
+//     let bytes = s.as_bytes();
+
+//     for (i, &item) in bytes.iter().enumerate() {
+//         if item == b' ' {
+//             return &s[0..i];
+//         }
+//     }
+
+//     &s[..]
+// }
+
+// 字符串字面量就是slice
+
+// 其他类型的slice 数组
+
 fn main() {
-    let s = String::from("hello");
+    let a = [1, 2, 3, 4, 5];
 
-    let len = s.len();
-    let a: usize = 1;
-
-    // let slice = &s[a..len];
-    // 也可以 不写index 如果要获取全部
-    let slice = &s[..];
-    let slice = &s;
-    println!("{}", slice);
+    let slice = &a[0..3];
+    for item in slice {
+        println!("{}", item);
+    }
 }
