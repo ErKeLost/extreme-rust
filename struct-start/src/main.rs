@@ -177,18 +177,165 @@
 //     dbg!(&rect1);
 // }
 
+// #[derive(Debug)]
+// struct Rectangle {
+//     width: u32,
+//     height: u32,
+// }
+
+// fn main() {
+//     let scale = 2;
+//     let rect1 = Rectangle {
+//         width: dbg!(30 * scale),
+//         height: 50,
+//     };
+
+//     dbg!(&rect1);
+// }
+
+// 方法语法 方法语法与函数类似 他们使用fn 声明 可以拥有参数和返回值
+
+// #[derive(Debug)]
+// struct Rectangle {
+//     width: u32,
+//     height: u32,
+// }
+
+// impl Rectangle {
+//     fn area(&self) -> u32 {
+//         self.width * self.height
+//     }
+// }
+
+// fn main() {
+//     let rect1 = Rectangle {
+//         width: 30,
+//         height: 50,
+//     };
+
+//     println!(
+//         "The area of the rectangle is {} square pixels.",
+//         rect1.area()
+//     );
+// }
+
+// 方法都要到 impl中
+// struct Rectangle {
+//     width: u32,
+//     height: u32,
+// }
+// impl Rectangle {
+//     fn width(&self) -> bool {
+//         self.width > 0
+//     }
+// }
+
+// fn main() {
+//     let rect1 = Rectangle {
+//         width: 30,
+//         height: 50,
+//     };
+
+//     if rect1.width() {
+//         println!("The rectangle has a nonzero width; it is {}", rect1.width);
+//     }
+// }
+// 我们可以在同名的方法中使用一个字段。
+// 我们可以在同名的方法中使用一个字段来达到任何目的
+// 。在 main 中，当我们在 rect1.width 后面加上括号时。
+// Rust 知道我们指的是方法 width。当我们不使用圆括号时，
+// Rust 知道我们指的是字段 width。
+
+// 多个参数
+// struct Rectangle {
+//     width: u32,
+//     height: u32,
+// }
+// fn main() {
+//     let rect1 = Rectangle {
+//         width: 30,
+//         height: 50,
+//     };
+//     let rect2 = Rectangle {
+//         width: 10,
+//         height: 40,
+//     };
+//     let rect3 = Rectangle {
+//         width: 60,
+//         height: 45,
+//     };
+
+//     println!("Can rect1 hold rect2? {}", rect1.can_hold(&rect2));
+//     println!("Can rect1 hold rect3? {}", rect1.can_hold(&rect3));
+// }
+// impl Rectangle {
+//     fn area(&self) -> u32 {
+//         self.width * self.height
+//     }
+
+//     fn can_hold(&self, other: &Rectangle) -> bool {
+//         self.width > other.width && self.height > other.height
+//     }
+// }
+
+// 所有在impl中定义的函数被称为关联函数
+// #[derive(Debug)]
+// struct Rectangle {
+//     width: u32,
+//     height: u32,
+// }
+
+// impl Rectangle {
+//     // fn square(size: u32) -> Rectangle {
+//     //     Rectangle {
+//     //         width: size,
+//     //         height: size,
+//     //     }
+//     // }
+//     fn square(size: u32) -> u16 {
+//         123
+//     }
+// }
+
+// fn main() {
+//     let sq = Rectangle::square(3);
+//     println!("square {:#?}", sq);
+// }
+
+// 多个 impl 块
+
 #[derive(Debug)]
 struct Rectangle {
     width: u32,
     height: u32,
 }
 
+impl Rectangle {
+    fn area(&self) -> u32 {
+        self.width * self.height
+    }
+}
+
+impl Rectangle {
+    fn can_hold(&self, other: &Rectangle) -> bool {
+        self.width > other.width && self.height > other.height
+    }
+}
+
 fn main() {
-    let scale = 2;
     let rect1 = Rectangle {
-        width: dbg!(30 * scale),
-        height: 50,
+        width: 30,
+        height: 30,
+    };
+    let rect2 = Rectangle {
+        width: 10,
+        height: 40,
+    };
+    let rect3 = Rectangle {
+        width: 60,
+        height: 45,
     };
 
-    dbg!(&rect1);
+    println!("Can rect1 hold rect2? {}", rect1.can_hold(&rect2));
+    println!("Can rect1 hold rect3? {}", rect1.can_hold(&rect3));
 }
