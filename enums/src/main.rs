@@ -2,7 +2,6 @@
 //     println!("Hello, world!");
 // }
 
-
 // 枚举和模式匹配
 // 本章介绍 枚举（enumerations），也被称作 enums。
 // 枚举允许你通过列举可能的 成员（variants） 来定义一个类型。
@@ -15,3 +14,75 @@
 // 枚举是一个很多语言都有的功能，不过不同语言中其功能各不相同。
 // Rust 的枚举与 F#、OCaml 和 Haskell 这样的函数式编程语言中的
 //  代数数据类型（algebraic data types）最为相似。
+
+// enum IpAddrKind {
+//     V4,
+//     V6,
+// }
+// fn main() {
+//     let four = IpAddrKind::V4;
+//     let six = IpAddrKind::V6;
+//     println!("{:?}", four);
+//     println!("{:?}", six);
+//     route(six)
+// }
+
+// // 定义一个函数来获取任何 ipaddrkind
+
+// fn route(id_type: IpAddrKind) {
+//     println!("{:?}", id_type);
+// }
+
+// 把 枚举 存在结构体里面
+// #[derive(Debug)]
+// fn main() {
+//     enum IpAddrKind {
+//         V4,
+//         V6,
+//     }
+
+//     struct IpAddr {
+//         kind: IpAddrKind,
+//         address: String,
+//     }
+
+//     let home = IpAddr {
+//         kind: IpAddrKind::V4,
+//         address: String::from("127.0.0.1"),
+//     };
+
+//     let loopback = IpAddr {
+//         kind: IpAddrKind::V6,
+//         address: String::from("::1"),
+//     };
+//     println!("{:?#}", loopback);
+//     println!("{:?#}", home);
+// }
+
+// 我们可以用 枚举将数据直接放进每一个枚举成员而不是当作结构体的一部分
+// #![allow(unused)]
+// fn main() {
+//     enum IpAddr {
+//         V4(String),
+//         V6(String),
+//     }
+
+//     let home = IpAddr::V4(String::from("127.0.0.1"));
+
+//     let loopback = IpAddr::V6(String::from("::1"));
+// }
+
+// 枚举类型可以存放任意类型的数据 字符串 数字类型 结构体
+// 甚至可以包含哪一个枚举
+
+// #![allow(unused)]
+// #[derive(Debug)]
+// fn main() {
+//     enum Message {
+//         Quit,
+//         Move { x: i32, y: i32 },
+//         Write(String),
+//         ChangeColor(i32, i32, i32),
+//     }
+//     println!("{}", Message)
+// }
