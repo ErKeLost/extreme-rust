@@ -86,3 +86,15 @@
 //     }
 //     println!("{}", Message)
 // }
+
+// 枚举 option<T> 定义于标准库 不需要直接显示的引用他们
+
+// #![allow(unused)]
+// #[derive(Debug)]
+// fn main() {
+//     let some_number = Some(5);
+//     let some_string = Some("a string");
+
+//     let absent_number: Option<i32> = None;
+//     println!("{:?#}", some_number)
+// }
