@@ -97,21 +97,64 @@
 // 你必须再次掷出。这种情况下我们不需要使用这个值，
 // 所以我们改动代码使用 _ 来替代变量 other ：
 // 通配符 _ 会报一个不存在的变量
-fn main() {
-    let dice_roll = 9999;
-    match dice_roll {
-        3 => add_fancy_hat(),
-        7 => remove_fancy_hat(),
-        other => move_player(other),
-        _ => reroll(),
-        // 无事发生
-        _ => (),
-    }
+// fn main() {
+//     let dice_roll = 9999;
+//     match dice_roll {
+//         3 => add_fancy_hat(),
+//         7 => remove_fancy_hat(),
+//         other => move_player(other),
+//         _ => reroll(),
+//         // 无事发生
+//         _ => (),
+//     }
 
-    fn add_fancy_hat() {}
-    fn remove_fancy_hat() {}
-    fn move_player(num_spaces: u128) {
-        println!("{}", num_spaces)
-    }
-    fn reroll() {}
-}
+//     fn add_fancy_hat() {}
+//     fn remove_fancy_hat() {}
+//     fn move_player(num_spaces: u128) {
+//         println!("{}", num_spaces)
+//     }
+//     fn reroll() {}
+// }
+
+// if let 简单控制流
+
+// fn main() {
+//     let some = Some(3);
+//     match some {
+//         Some(3) => println!("three"),
+//         _ => (),
+//     }
+//     if let Some(3) = some {
+//         println!("我是some3")
+//     }
+// }
+
+// if let 可以包含在match 表达式中
+// 可以加在 else  if let 就是 match 的语法糖
+
+// #![allow(unused)]
+// fn main() {
+//     #[derive(Debug)]
+//     enum UsState {
+//         Alabama,
+//         Alaska,
+//     }
+
+//     enum Coin {
+//         Penny,
+//         Nickel,
+//         Dime,
+//         Quarter(UsState),
+//     }
+//     let coin = Coin::Penny;
+//     let mut count = 0;
+//     match coin {
+//         Coin::Quarter(state) => println!("State quarter from {:?}!", state),
+//         _ => count += 1,
+//     }
+//     if let Coin::Quarter(state) = coin {
+//         println!("State quarter from {:?}!", state);
+//     } else {
+//         count += 1;
+//     }
+// }
