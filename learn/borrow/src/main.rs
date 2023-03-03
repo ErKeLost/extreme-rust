@@ -139,6 +139,6 @@ fn main() {
 //     &s
 // }
 fn get_danger_string() -> String {
-    let s = String::from("hello asdasdasdasd");
+    let s = String::from("hello erkelost");
     s
 }
