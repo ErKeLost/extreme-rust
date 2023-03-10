@@ -52,4 +52,22 @@ fn main() {
         "The area of the rectangle is {} square pixels.",
         rect1.area()
     );
+
+    // new 方法是用来创建关联函数的
+    #[derive(Debug)]
+    struct RectData {
+        width: u8,
+        height: u8,
+    }
+    impl RectData {
+        fn new(w: u8, h: u8) -> RectData {
+            RectData {
+                width: w,
+                height: h,
+            }
+        }
+    }
+
+    let sp = RectData::new(200, 200);
+    println!("{:?}", sp.width);
 }
