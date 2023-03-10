@@ -99,12 +99,33 @@
 //     println!("{:?#}", some_number)
 // }
 
-
-
-
+#[derive(Debug)]
 enum PokerSuit {
-  Clubs,
-  Spades,
-  Diamonds,
-  Hearts,
+    Clubs(u8),
+    Spades(u8),
+    Diamonds(u8),
+    Hearts(u8),
 }
+fn main() {
+    let heart = PokerSuit::Hearts(88);
+    let diamond = PokerSuit::Diamonds(99);
+
+    // print_suit(heart);
+    // print_suit(diamond);
+
+    match heart {
+        PokerSuit::Clubs(value) => println!("Clubs {}", value),
+        PokerSuit::Spades(value) => println!("Spades {}", value),
+        PokerSuit::Diamonds(value) => println!("Diamonds {}", value),
+        PokerSuit::Hearts(value) => println!("Hearts {}", value),
+    }
+
+    match diamond {
+        PokerSuit::Clubs(value) => println!("Clubs {}", value),
+        PokerSuit::Spades(value) => println!("Spades {}", value),
+        PokerSuit::Diamonds(value) => println!("Diamonds {}", value),
+        PokerSuit::Hearts(value) => println!("Hearts {}", value),
+    }
+}
+
+fn print_suit(card: PokerSuit) {}
