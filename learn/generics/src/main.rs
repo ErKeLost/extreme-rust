@@ -49,7 +49,74 @@ enum Option<T> {
     Some(T),
     None,
 }
+
+// 在方法中使用泛型
+struct Point6<T> {
+    x: T,
+    y: T,
+}
+
+struct Point99<T> {
+    x: T,
+    y: T,
+}
+
+impl<T> Point6<T> {
+    fn x(&self) -> &T {
+        &self.x
+    }
+}
+
+// 为具体的泛型类型提供方法
+impl Point99<f32> {
+    fn distance_from_origin(&self) -> f32 {
+        (self.x.powi(2) + self.y.powi(2)).sqrt()
+    }
+}
+
+// const 泛型
+// [i21; 2] 和 [i21; 3] 是不同的数组类型
+fn display_array(arr: &[i32]) {
+    println!("{:?}", arr);
+}
+
+fn display_array2<T: std::fmt::Debug>(arr: &[T]) {
+    println!("{:?}", arr);
+}
+
+// usize 什么意思
+
+fn const_arr<T: std::fmt::Debug, const N: usize>(arr: [T; N]) {
+    println!("{:?}", arr);
+}
 fn main() {
+    let integer = Some(5);
+    let float = Some(5.0);
+    println!("{:?}", integer);
+    println!("{:?}", float);
+    let arr: [i32; 3] = [1, 2, 3];
+    const_arr(arr);
+
+    let arr: [i32; 2] = [1, 2];
+    const_arr(arr);
+    display_array(&[1, 2, 3]);
+    display_array(&[1, 2]);
+    // 只要使用切片数组 传入arr 的不可变引用就行
+    // 使用泛型
+    let arr: [i32; 5] = [1, 2, 3, 4, 5];
+    display_array2(&arr);
+
+    let arr: [i32; 2] = [1, 2];
+    display_array2(&arr);
+
+    // 实现 const 泛型
+
+    let num: u64 = 55;
+    println!("{}", num.pow(2));
+    let p1 = Point99 { x: 5.0, y: 10.0 };
+    println!("p1.x = {}", p1.distance_from_origin());
+    let p = Point6 { x: 10, y: 600 };
+    println!("p.x = {}", p.x());
     let number_list = vec![34, 50, 25, 100, 65];
     // println!("The largest number is {}", result);
     let integer = Point { x: 5, y: 10 };

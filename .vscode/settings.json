@@ -1,3 +1,7 @@
 {
-    "Codegeex.EnableExtension": false
+    "Codegeex.EnableExtension": false,
+    "cSpell.words": [
+        "powi",
+        "weibo"
+    ]
 }

@@ -129,16 +129,24 @@
 
 // 悬垂引用
 
-fn main() {
-    let danger_string = get_danger_string();
-    println!("{}", danger_string);
-}
-// TODO 这里 s 离开作用域并被丢弃。其内存被释放
-// fn get_danger_string() -> &String {
-//     let s = String::from("hello");
-//     &s
+// fn main() {
+//     let danger_string = get_danger_string();
+//     println!("{}", danger_string);
 // }
-fn get_danger_string() -> String {
-    let s = String::from("hello erkelost");
-    s
+// // TODO 这里 s 离开作用域并被丢弃。其内存被释放
+// // fn get_danger_string() -> &String {
+// //     let s = String::from("hello");
+// //     &s
+// // }
+// fn get_danger_string() -> String {
+//     let s = String::from("hello erkelost");
+//     s
+// }
+
+// #[derive(Debug)]
+fn main() {
+    println!("Hello, world!");
+
+    // 所有权
+    
 }
