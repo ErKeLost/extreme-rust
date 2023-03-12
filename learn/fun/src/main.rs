@@ -4,4 +4,5 @@ fn main() {
 }
 fn main_another() {
     println!("Hello, main_another!");
+    println!("hello, world!")
 }
