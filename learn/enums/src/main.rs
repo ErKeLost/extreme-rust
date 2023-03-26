@@ -99,33 +99,54 @@
 //     println!("{:?#}", some_number)
 // }
 
-#[derive(Debug)]
-enum PokerSuit {
-    Clubs(u8),
-    Spades(u8),
-    Diamonds(u8),
-    Hearts(u8),
+// #[derive(Debug)]
+// enum PokerSuit {
+//     Clubs(u8),
+//     Spades(u8),
+//     Diamonds(u8),
+//     Hearts(u8),
+// }
+// fn main() {
+//     let heart = PokerSuit::Hearts(88);
+//     let diamond = PokerSuit::Diamonds(99);
+
+//     // print_suit(heart);
+//     // print_suit(diamond);
+
+//     match heart {
+//         PokerSuit::Clubs(value) => println!("Clubs {}", value),
+//         PokerSuit::Spades(value) => println!("Spades {}", value),
+//         PokerSuit::Diamonds(value) => println!("Diamonds {}", value),
+//         PokerSuit::Hearts(value) => println!("Hearts {}", value),
+//     }
+
+//     match diamond {
+//         PokerSuit::Clubs(value) => println!("Clubs {}", value),
+//         PokerSuit::Spades(value) => println!("Spades {}", value),
+//         PokerSuit::Diamonds(value) => println!("Diamonds {}", value),
+//         PokerSuit::Hearts(value) => println!("Hearts {}", value),
+//     }
+// }
+
+// fn print_suit(card: PokerSuit) {}
+
+enum IpAddrKind {
+    V4(String),
+    V6(String),
+    V8(u8, u8, u8, u8),
 }
+
+struct IpAddr {
+    kind: IpAddrKind,
+    address: String,
+}
+
 fn main() {
-    let heart = PokerSuit::Hearts(88);
-    let diamond = PokerSuit::Diamonds(99);
-
-    // print_suit(heart);
-    // print_suit(diamond);
-
-    match heart {
-        PokerSuit::Clubs(value) => println!("Clubs {}", value),
-        PokerSuit::Spades(value) => println!("Spades {}", value),
-        PokerSuit::Diamonds(value) => println!("Diamonds {}", value),
-        PokerSuit::Hearts(value) => println!("Hearts {}", value),
+    let localhost = IpAddr {
+        kind: IpAddrKind::V4,
+        address: String::from("127.0.0.1")
     }
 
-    match diamond {
-        PokerSuit::Clubs(value) => println!("Clubs {}", value),
-        PokerSuit::Spades(value) => println!("Spades {}", value),
-        PokerSuit::Diamonds(value) => println!("Diamonds {}", value),
-        PokerSuit::Hearts(value) => println!("Hearts {}", value),
-    }
+    let local = IpAppKind::V4(String::from("127.0.0.1"));
+    let u8Add = IpAppKind::V8(127, 0, 0, 1);
 }
-
-fn print_suit(card: PokerSuit) {}
