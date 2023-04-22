@@ -142,11 +142,64 @@ struct IpAddr {
 }
 
 fn main() {
-    let localhost = IpAddr {
-        kind: IpAddrKind::V4,
-        address: String::from("127.0.0.1")
-    }
+    let localhost = IpAddrKind::V6(String::from("::1"));
 
-    let local = IpAppKind::V4(String::from("127.0.0.1"));
-    let u8Add = IpAppKind::V8(127, 0, 0, 1);
+    let x: i8 = 32;
+
+    let y = Some(66);
+
+    let sum = x + y.unwrap();
+
+    println!("{}", sum);
+
+    let some = Some(5);
+
+    assert_eq!(some.is_some(), true);
+
+    // unwrap 方法 返回 option 包含的值 如果变量为空 则会导致 panic
+
+    let some_number = Some(5);
+
+    // 下面的代码将会 panic
+    let none_number: Option<i32> = None;
+    // let result1 = none_number.unwrap();
+
+    let result2 = some_number.unwrap_or(0);
+    let result3 = none_number.unwrap_or(0);
+
+    assert_eq!(result2, 5);
+    assert_eq!(result3, 0);
+    //  or else 和 unwrap_or_else 的区别在于 unwrap_or_else 接受一个闭包
+
+    // map() 方法接受一个函数作为参数，用于将 Option<T> 中的值转换为另一种类型。如果 Option<T> 变量为空，则调用函数不会发生任何操作。
+
+    let some_number = Some(5);
+    let none_number: Option<i32> = None;
+
+    let result1 = some_number.map(|x| x * 2);
+    let result2 = none_number.map(|x| x * 2);
+
+    assert_eq!(result1, Some(10));
+    assert_eq!(result2, None);
+
+    let some_number = Some(Some(5));
+    let none_number: Option<Option<i32>> = None;
+
+    let result1 = some_number.flatten();
+    let result2 = none_number.flatten();
+    println!("{:?}", result1);
+    println!("{:?}", some_number);
+    assert_eq!(result1, Some(5));
+    assert_eq!(result2, None);
+
+    let some_number = Some(5);
+    let none_number: Option<i32> = None;
+
+    let result1 = some_number.filter(|x| x > &2);
+    let result2 = some_number.filter(|x| x > &10);
+    let result3 = none_number.filter(|x| x > &2);
+
+    assert_eq!(result1, Some(5));
+    assert_eq!(result2, None);
+    assert_eq!(result3, None);
 }
