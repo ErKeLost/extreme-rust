@@ -68,41 +68,86 @@
 // 数组的值 + 数组的长度
 // let a = [3; 5]; let a = [3, 3, 3, 3, 3];
 
-fn main() {
-    let x = 5;
-    println!("The value of x is: {}", x);
-    let x = 888;
-    // 使用 let 重复定义变量时，新变量会 隐藏 之前的变量，因此可以用相同的名字来接收新值 而且新值的类型可以与之前的类型不同
-    const DEFAULT_VALUE: u32 = 999_999;
+// fn main() {
+//     let x = 5;
+//     println!("The value of x is: {}", x);
+//     let x = 888;
+//     // 使用 let 重复定义变量时，新变量会 隐藏 之前的变量，因此可以用相同的名字来接收新值 而且新值的类型可以与之前的类型不同
+//     const DEFAULT_VALUE: u32 = 999_999;
 
-    let tup: (i8, &str) = (1, "hello");
-    let (x, y) = tup;
-    println!("The value of y is: {}", y);
-    println!("The value of x is: {}", x);
-    println!("{} {}", tup.0, tup.1);
+//     let tup: (i8, &str) = (1, "hello");
+//     let (x, y) = tup;
+//     println!("The value of y is: {}", y);
+//     println!("The value of x is: {}", x);
+//     println!("{} {}", tup.0, tup.1);
 
-    // 三个所有权的规则
-    // 1. 每一个 rust 都有一个所有者
-    // 2. 变量不能同时拥有两个所有者
-    // 3. 当变量离开作用域，它的值将被丢弃
-    let i = 22;
-    test(i);
-    println!("The value of i is: {}", i);
+//     // 三个所有权的规则
+//     // 1. 每一个 rust 都有一个所有者
+//     // 2. 变量不能同时拥有两个所有者
+//     // 3. 当变量离开作用域，它的值将被丢弃
+//     let i = 22;
+//     test(i);
+//     println!("The value of i is: {}", i);
 
-    // 一次只能借给一个人用 不能多次借用
+//     // 一次只能借给一个人用 不能多次借用
 
-    // 可以拥有多个不可变引用 但是都不能有一个 可变引用 如果不可辨引用存在的话
+//     // 可以拥有多个不可变引用 但是都不能有一个 可变引用 如果不可辨引用存在的话
 
-    let mut a = String::from("hello"); 
+//     let mut a = String::from("hello");
 
-    let b = &a;
-    let c = &a;
+//     let b = &a;
+//     let c = &a;
 
-    println!("{} {}", b, c);
-    let d = &mut a;
-  
-    println!("{} ", d);
+//     println!("{} {}", b, c);
+//     let d = &mut a;
+
+//     println!("{} ", d);
+// }
+// fn test(x: i32) -> i32 {
+//     x
+// }
+
+#[derive(Debug)]
+struct User {
+    username: String,
+    email: String,
+    sign_in_count: u64,
+    active: bool,
 }
-fn test(x: i32) -> i32 {
-    x
+// 类似元组一样 struct 可以存放不同类型的值
+#[derive(Debug)]
+struct Rectangle {
+    width: u32,
+    height: u32,
+}
+fn main() {
+    // let mut user1 = User {
+    //     email: String::from("erkelost@qq.com"),
+    //     username: String::from("erkelost"),
+    //     active: true,
+    //     sign_in_count: 1,
+    // };
+
+    // let name = &user1.username;
+    // user1.username = String::from("erkelost2");
+    // // println!("name is {}", name);
+    // println!("user {:#?}", user1);
+    let rect = Rectangle {
+        width: 30,
+        height: 50,
+    };
+    println!("rect is {:#?}", rect);
+    println!("rect is {:#?}", area(&rect));
+}
+fn area(rect: &Rectangle) -> u32 {
+    rect.width * rect.height
+}
+
+fn build_user(email: String, username: String) -> User {
+    User {
+        email,    // 等同于 email: email,
+        username, // 等同于 username: username,
+        active: true,
+        sign_in_count: 1,
+    }
 }
