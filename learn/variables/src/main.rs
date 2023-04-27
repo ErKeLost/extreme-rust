@@ -44,13 +44,13 @@
 // }
 
 // 元祖类型结构赋值
-fn main() {
-    let tup = (500, 6.4, 1);
+// fn main() {
+//     let tup = (500, 6.4, 1);
 
-    let (x, y, z) = tup;
+//     let (x, y, z) = tup;
 
-    println!("The value of y is: {}", y);
-}
+//     println!("The value of y is: {}", y);
+// }
 
 // 类似对象形式访问 但是取出来的是值的索引
 // fn main() {
@@ -67,3 +67,42 @@ fn main() {
 // let a: [i32; 5] = [1, 2, 3, 4, 5];
 // 数组的值 + 数组的长度
 // let a = [3; 5]; let a = [3, 3, 3, 3, 3];
+
+fn main() {
+    let x = 5;
+    println!("The value of x is: {}", x);
+    let x = 888;
+    // 使用 let 重复定义变量时，新变量会 隐藏 之前的变量，因此可以用相同的名字来接收新值 而且新值的类型可以与之前的类型不同
+    const DEFAULT_VALUE: u32 = 999_999;
+
+    let tup: (i8, &str) = (1, "hello");
+    let (x, y) = tup;
+    println!("The value of y is: {}", y);
+    println!("The value of x is: {}", x);
+    println!("{} {}", tup.0, tup.1);
+
+    // 三个所有权的规则
+    // 1. 每一个 rust 都有一个所有者
+    // 2. 变量不能同时拥有两个所有者
+    // 3. 当变量离开作用域，它的值将被丢弃
+    let i = 22;
+    test(i);
+    println!("The value of i is: {}", i);
+
+    // 一次只能借给一个人用 不能多次借用
+
+    // 可以拥有多个不可变引用 但是都不能有一个 可变引用 如果不可辨引用存在的话
+
+    let mut a = String::from("hello"); 
+
+    let b = &a;
+    let c = &a;
+
+    println!("{} {}", b, c);
+    let d = &mut a;
+  
+    println!("{} ", d);
+}
+fn test(x: i32) -> i32 {
+    x
+}
