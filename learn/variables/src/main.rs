@@ -127,4 +127,48 @@ fn first_word(s: &String) -> usize {
         }
     }
     s.len()
+
+#[derive(Debug)]
+struct User {
+    username: String,
+    email: String,
+    sign_in_count: u64,
+    active: bool,
+}
+// 类似元组一样 struct 可以存放不同类型的值
+#[derive(Debug)]
+struct Rectangle {
+    width: u32,
+    height: u32,
+}
+fn main() {
+    // let mut user1 = User {
+    //     email: String::from("erkelost@qq.com"),
+    //     username: String::from("erkelost"),
+    //     active: true,
+    //     sign_in_count: 1,
+    // };
+
+    // let name = &user1.username;
+    // user1.username = String::from("erkelost2");
+    // // println!("name is {}", name);
+    // println!("user {:#?}", user1);
+    let rect = Rectangle {
+        width: 30,
+        height: 50,
+    };
+    println!("rect is {:#?}", rect);
+    println!("rect is {:#?}", area(&rect));
+}
+fn area(rect: &Rectangle) -> u32 {
+    rect.width * rect.height
+}
+
+fn build_user(email: String, username: String) -> User {
+    User {
+        email,    // 等同于 email: email,
+        username, // 等同于 username: username,
+        active: true,
+        sign_in_count: 1,
+    }
 }
