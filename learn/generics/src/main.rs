@@ -16,7 +16,6 @@
 //    实际上，泛型就是一种多态。泛型主要目的是为程序员提供编程的便利，减少代码的臃肿，同时可以极大地丰富语言本身的表达能力，为程序员提供了一个合适的炮管。想想，一个函数，可以代替几十个，甚至数百个函数，是一件多么让人兴奋的事情：
 // *
 // */
-
 // fn add<T: std::ops::Mul<Output = T>>(a: T, b: T) -> T {
 //     a * b
 // }
@@ -134,3 +133,35 @@
 //     println!("add i32: {}", add_i32(800i32, 600i32));
 //     println!("add f64: {}", add_f64(1.2, 3.4));
 // }
+
+struct Point<T> {
+    x: T,
+    y: T,
+}
+
+fn main() {
+    let number_list = vec![34, 50, 25, 100, 65];
+    let res = get_largest(number_list);
+    println!("The largest number is {}", res);
+
+    enum Options<T> {
+        Some(T),
+        None,
+    }
+
+    enum Result<T, E> {
+        Ok(T),
+        Err(E),
+    }
+}
+
+fn get_largest<T: PartialOrd + Copy>(number_list: Vec<T>) -> T {
+    let mut largest = number_list[0];
+
+    for number in number_list {
+        if number > largest {
+            largest = number;
+        }
+    }
+    largest
+}
