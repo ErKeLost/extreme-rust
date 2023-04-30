@@ -139,10 +139,18 @@ struct Point<T> {
     y: T,
 }
 
+impl<T> Point<T> {
+    fn x(&self) -> &T {
+        &self.x
+    }
+}
+
 fn main() {
     let number_list = vec![34, 50, 25, 100, 65];
     let res = get_largest(number_list);
     println!("The largest number is {}", res);
+
+
 
     enum Options<T> {
         Some(T),
