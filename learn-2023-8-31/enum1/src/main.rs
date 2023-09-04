@@ -14,3 +14,4 @@ struct FruitBox {
     pub contains_apple: bool,
     pub contains_pear: bool,
 }
+
